@@ -14,12 +14,16 @@ while(True):
 	#Operations on a frame - convert to greyscale
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+	# Original RGB feed from webcam
+	cv2.imshow('original', frame)
+
 	# Show the resulting frame
 	cv2.imshow('frame',gray)
 
+	#close everything when q is pressed
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
 
-	#When everything is done, release the capture
-	cap.release()
-	cv.destroyAllWindows()
+#When everything is done, release the capture
+cap.release()
+cv2.destroyAllWindows()
