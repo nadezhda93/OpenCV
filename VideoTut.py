@@ -4,7 +4,11 @@ import cv2
 # create an object for the video, the argument is the number of the 
 # camera, in this case only one. Replace with path or file 
 # name to play from file
-cap = cv2.VideoCapture(0) 
+cap = cv2.VideoCapture(0)
+win_length = cap.get(3)
+win_height = cap.get(4) 
+print 'length', win_length
+print 'height', win_height
 
 while(True):
 	#Capture frame by frame from object
