@@ -1,10 +1,15 @@
 import cv2
+import numpy as np
 import sys
 
 cascPath = sys.argv[1] #file name supplied in terminal
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 video_capture = cv2.VideoCapture(0)
+
+#define the codec and create VideoWriter object
+fourcc = cv2.cv.CV_FOURCC(*'FFV1')
+out = cv2.VideoWriter('faceTracking.avi', fourcc, 30.0,(640, 480), True)
 
 while True:
     # Capture frame-by-frame
@@ -27,9 +32,15 @@ while True:
     # Display the resulting frame
     cv2.imshow('Video', frame)
 
+    #write out the frame
+    out.write(frame)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+
 # When everything is done, release the capture
 video_capture.release()
+# stop capturing video
+out.release()
 cv2.destroyAllWindows()
